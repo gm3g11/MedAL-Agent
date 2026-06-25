@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+
+# Benchmark outputs, caches, datasets — regenerated or downloaded separately (see README "Data").
+# Anchored to top-level so medal_bench/data/ (the adapters) and configs are NOT excluded.
+/runs/
+/cache/
+/caches/
+/logs/
+*.log
+/data/
+
+# Model weights (e.g. the SAM ViT-H checkpoint) — downloaded separately, see README.
+*.pth
+*.ckpt
+*.safetensors
+
+# Scratch / working files
+scratch_*
+*.partial.*
+*.fail.txt

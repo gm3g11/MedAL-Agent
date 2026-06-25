@@ -1,0 +1,25 @@
+# MedAL-Bench — Python dependencies (tested with Python 3.10.19)
+#
+# IMPORTANT: install PyTorch FIRST, matching your CUDA. We used CUDA 12.1:
+#   pip install torch==2.4.1 torchvision==0.19.1 --index-url https://download.pytorch.org/whl/cu121
+# (torch 2.4.1 is the newest that still supports V100/sm_70; pick the wheel for your GPU.)
+# Then:  pip install -r requirements.txt
+
+torch==2.4.1                 # +cu121 build; see note above
+torchvision==0.19.1          # +cu121 build
+numpy==1.26.4
+scipy==1.15.3
+scikit-learn==1.3.2          # kmeans++ (BADGE/TypiClust), pairwise distances (CoreSet)
+pillow==10.4.0               # 2D image/mask I/O
+h5py==3.15.1                 # CREMI HDF5 + SAM feature cache
+nibabel==5.4.2               # NIfTI volumes (MSD/abdominal CT/MRI)
+SimpleITK==2.5.5             # some volumetric loaders
+tifffile==2025.5.10          # multipage TIFF (EM datasets)
+opencv-python==4.11.0.86     # resize / morphology helpers
+einops==0.8.1
+pandas==2.3.3
+tqdm==4.67.1
+MedPy==0.5.2                 # HD95 / ASSD surface metrics (optional, eval --compute-surface)
+segment-anything==1.0        # SAM-H (vit_h) features for P7 (SAM-CoreSet) and P8 (TypiClust)
+monai==1.5.2                 # optional: a few data transforms
+matplotlib==3.10.8           # optional: plotting/analysis

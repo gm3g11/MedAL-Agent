@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medal-bench"
+version = "0.1.0"
+description = "A reproducible benchmark of 10 active-learning acquisition methods for 2D medical image segmentation."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+# Pinned dependency versions are in requirements.txt (install torch from the CUDA-matched index first).
+
+[tool.setuptools.packages.find]
+include = ["medal_bench*"]
