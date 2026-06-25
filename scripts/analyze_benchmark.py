@@ -12,7 +12,7 @@ M = ["P0","P1","P2","P3","P4","P5","P6","P7","P8","P9"]
 NAME = {"P0":"Random","P1":"Entropy","P2":"BALD","P3":"CoreSet","P4":"BADGE","P5":"Ent+Core",
         "P6":"SelUnc","P7":"SAM-Core","P8":"TypiClust","P9":"PAAL"}
 SEEDS = [1000,2000,3000]
-curves = load_curves("runs/frozen_v5")
+curves = load_curves("results/frozen_v5")
 
 A = {}  # (ds,m,seed)->aubc
 for (ds,m,s),c in curves.items():

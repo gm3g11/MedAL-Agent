@@ -124,16 +124,20 @@ Example SGE/SLURM worker scripts (one worker per GPU; re-submit to add workers) 
 
 ## Analyze results
 
+**The full 19-dataset results are bundled** in [`results/`](results/) — 570 cells (19 datasets × 10
+methods × 3 seeds) of budget→Dice trajectories, plus a tidy [`results/summary_19set.csv`](results/summary_19set.csv).
+So the analysis runs out-of-box (no GPU, no re-running the benchmark):
+
 ```python
 from medal_bench.analysis.derived import load_curves, aubc, average_rank, win_rate
-curves = load_curves("runs/frozen_v5")          # {(dataset, method, seed): [(budget_frac, dsc), ...]}
+curves = load_curves("results/frozen_v5")        # {(dataset, method, seed): [(budget_frac, dsc), ...]}
 score  = aubc(*zip(*curves[("busi","P4",1000)])) # area under the budget→Dice curve
 ```
 
-Reproduce the headline analysis with the included scripts: `scripts/analyze_benchmark.py` (per-dataset
-rankings, AUBC, gain-over-Random, differentiation), `scripts/analyze_skill_ceiling.py` (oracle vs
-fixed-best ceiling), and `scripts/budget_sensitivity.py` (per-budget method ranking). They hard-code the
-19-dataset list and `runs/frozen_v5` — edit those two constants to point at your own run.
+Reproduce the headline analysis with the included scripts (they read `results/frozen_v5/` directly):
+`scripts/analyze_benchmark.py` (per-dataset rankings, AUBC, gain-over-Random, differentiation),
+`scripts/analyze_skill_ceiling.py` (oracle vs fixed-best ceiling), and `scripts/budget_sensitivity.py`
+(per-budget method ranking). See [`results/README.md`](results/README.md) for the file format.
 
 ---
 
@@ -182,6 +186,7 @@ medal_bench/
 ├── profiles/      # run configs (bench512_v5 = canonical) + budget grids
 ├── analysis/      # AUBC, rankings, win-rate, regret (derived.py)
 └── tests/         # unit tests (pytest medal_bench/tests)
+results/           # bundled 19-dataset results: 570 cell JSONLs + summary_19set.csv (see results/README.md)
 scripts/           # headline-analysis scripts (analyze_benchmark, analyze_skill_ceiling, budget_sensitivity)
 submit/            # example cluster (SGE/SLURM) worker + launch scripts
 METHODS.md  references.bib  requirements.txt  pyproject.toml

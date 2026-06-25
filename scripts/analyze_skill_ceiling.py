@@ -5,7 +5,7 @@ DS19=["btcv_synapse","flare22","mmwhs_ct","hvsmr2016","ext_abdoment1k","ext_brat
  "msd_task09_spleen","origa","kvasir_seg","liqa_mri","busi"]
 M=["P0","P1","P2","P3","P4","P5","P6","P7","P8","P9"]; SEEDS=[1000,2000,3000]
 NM={"P0":"Random","P4":"BADGE","P5":"Ent+Core","P8":"TypiClust","P2":"BALD","P7":"SAM-Core"}
-cur=load_curves("runs/frozen_v5")
+cur=load_curves("results/frozen_v5")
 A={}
 for (ds,m,s),c in cur.items():
     if ds in DS19 and m in M and s in SEEDS and len(c)>=2: A[(ds,m,s)]=aubc([x for x,_ in c],[y for _,y in c])
