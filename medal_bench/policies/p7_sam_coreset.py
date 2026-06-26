@@ -1,6 +1,6 @@
 """P7 - SAM-CoreSet (foundation-feature representativeness).
 
-k-center-greedy in SAM ViT-B image-encoder feature space. The runner
+k-center-greedy in SAM ViT-H image-encoder feature space. The runner
 pre-computes SAM embeddings (cached to HDF5) and stores them in
 ``ctx.features["foundation_pool"]`` / ``ctx.features["foundation_label"]``.
 

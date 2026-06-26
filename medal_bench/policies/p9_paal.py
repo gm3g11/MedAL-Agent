@@ -1,14 +1,15 @@
 """P9 - PAAL (Predictive Accuracy-Based Active Learning).
 
-Canonical PAAL from Yi et al., "Predictive Accuracy-Based Active Learning for
+Canonical PAAL from Shi et al., "Predictive Accuracy-Based Active Learning for
 Medical Image Segmentation" (IJCAI 2024). Reference impl: shijun18/PAAL-MedSeg.
 
 Algorithm:
   1. Train Accuracy Predictor (AP) on the LABELED set:
        - For each labeled (image, mask): get the seg model's softmax probs P;
-         compute per-class soft Dice T(P, mask) ∈ [0,1].
+         compute per-class hard (argmax) Dice T(P, mask) ∈ [0,1].
        - AP input = concat(image, P); AP target = T.
-       - MSE loss, AdamW, from-scratch each AL round (since seg is from-scratch too).
+       - MSE loss, AdamW; the AP is warm-started across AL rounds by default
+         (persist_ap_weights=True; set False for strict per-round from-scratch).
   2. Score each UNLABELED sample:
        - Use pred_cache for seg probs.
        - AP output = predicted per-class accuracy â ∈ [0,1].
